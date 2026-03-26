@@ -96,6 +96,16 @@ def calculator():
         except Exception as e:
             print(f"An error occurred: {e}")
 
+#The "History" Logger
+
+def log_calculation(num1, op, num2, result):
+    """Logs the calculation with a timestamp to a text file."""
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    log_entry = f"[{timestamp}] {num1} {op} {num2} = {result}\n"
+    
+    with open("calculator_history.txt", "a") as file:
+        file.write(log_entry)
+
 # --- LOGIC LAYER ---
 def add(a, b): return a + b
 def subtract(a, b): return a - b
@@ -130,6 +140,20 @@ def get_number(prompt):
             return float(user_input)
         except ValueError:
             print("Invalid input! Enter a number or 'ans'.")
+
+#The "Help" Command
+def display_help():
+    print("\n--- Available Commands ---")
+    print("+    : Addition")
+    print("-    : Subtraction")
+    print("* : Multiplication")
+    print("/    : Division")
+    print("pow  : Power (Num1 to the power of Num2)")
+    print("sqrt : Square Root of Num1")
+    print("c    : Clear Memory")
+    print("h    : View Session History (from file)")
+    print("help : Show this menu")
+    print("q    : Quit")
 
 #===============================================
 #Step 5: Putting it all Together
