@@ -28,3 +28,16 @@ def divide(a, b):
         raise ValueError("Cannot divide by zero!")
     return a / b
 
+
+#===============================================
+#Step 3: Build a Robust Input Validator
+#In professional software, you can't trust user input.
+#We use a try-except block to prevent the program from crashing if someone types "abc" instead of a number.
+#===============================================
+
+def get_number(prompt):
+    while True:
+        try:
+            return float(input(prompt))
+        except ValueError:
+            print("Invalid input! Please enter a numeric value.")
