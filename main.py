@@ -32,19 +32,6 @@ def divide(a, b):
     return a / b
 
 #===============================================
-#Step 3: Build a Robust Input Validator
-#In professional software, you can't trust user input.
-#We use a try-except block to prevent the program from crashing if someone types "abc" instead of a number.
-#===============================================
-
-def get_number(prompt):
-    while True:
-        try:
-            return float(input(prompt))
-        except ValueError:
-            print("Invalid input! Please enter a numeric value.")
-
-#===============================================
 #Complex Math (The math Module)
 #===============================================
 def power(a, b):
@@ -109,20 +96,20 @@ def calculator():
         except Exception as e:
             print(f"An error occurred: {e}")
 
-#===============================================
-#Adding "State" (Memory)
-#===============================================
-last_result = 0
+# --- LOGIC LAYER ---
+def add(a, b): return a + b
+def subtract(a, b): return a - b
+def multiply(a, b): return a * b
+def divide(a, b): return a / b if b != 0 else "Error: Div by 0"
+def power(a, b): return math.pow(a, b)
+def square_root(a, b=None): return math.sqrt(a) if a >= 0 else "Error: Neg sqrt"
+def clear_memory(a=None, b=None): return 0
 
-def get_number(prompt):
-    while True:
-        user_input = input(prompt).lower()
-        if user_input == 'ans':
-            return last_result
-        try:
-            return float(user_input)
-        except ValueError:
-            print("Please enter a number or 'ans'.")
+# --- DATA LAYER ---
+operations = {
+    "+": add, "-": subtract, "*": multiply, "/": divide,
+    "pow": power, "sqrt": square_root, "c": clear_memory
+}
 
 #===============================================
 #Adding the Memory Feature
