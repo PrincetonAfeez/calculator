@@ -140,6 +140,27 @@ def get_number(prompt):
             return float(user_input)
         except ValueError:
             print("Please enter a number or 'ans'.")
+
+#===============================================
+#Adding the Memory Feature
+#===============================================
+# Initialize memory at the very top of your script
+last_result = 0
+
+def get_number(prompt):
+    global last_result # Tells Python we want to use the variable outside this function
+    while True:
+        user_input = input(prompt).lower().strip()
+        
+        if user_input == 'ans':
+            print(f" (Using last result: {last_result})")
+            return last_result
             
+        try:
+            return float(user_input)
+        except ValueError:
+            print("Invalid input! Enter a number or 'ans'.")
+
+
 if __name__ == "__main__":
     main()
