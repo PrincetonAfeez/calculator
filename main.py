@@ -57,3 +57,43 @@ operations = {
 }
 
 #===============================================
+
+
+#Step 5: Putting it all Together
+#Now we'll create the main loop that ties everything together.
+#===============================================
+
+def main():
+    print("Advanced Calculator")
+    print("Supported operations: +, -, *, /")
+    print("Type 'quit' to exit.")
+
+    while True:
+        # Get the first number
+        num1 = get_number("Enter the first number: ")
+
+        # Get the operation
+        op = input("Enter an operation (+, -, *, /): ")
+
+        # Check if the user wants to quit
+        if op == "quit":
+            print("Goodbye!")
+            break
+
+        # Check if the operation is valid
+        if op not in operations:
+            print("Invalid operation! Please try again.")
+            continue
+
+        # Get the second number
+        num2 = get_number("Enter the second number: ")
+
+        # Perform the calculation
+        try:
+            result = operations[op](num1, num2)
+            print(f"Result: {result}")
+        except ValueError as e:
+            print(f"Error: {e}")
+
+if __name__ == "__main__":
+    main()
