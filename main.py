@@ -57,8 +57,6 @@ operations = {
 }
 
 #===============================================
-
-
 #Step 5: Putting it all Together
 #Now we'll create the main loop that ties everything together.
 #===============================================
@@ -94,6 +92,39 @@ def main():
             print(f"Result: {result}")
         except ValueError as e:
             print(f"Error: {e}")
+
+#===============================================
+#Implementing the Infinite Loop
+#===============================================
+
+def calculator():
+    while True:
+        print("\n--- Advanced Calculator ---")
+        # 1. Get User Input
+        operation = input("Enter operation (+, -, *, /) or 'q' to quit: ").lower()
+
+        # 2. Exit Strategy
+        if operation == 'q':
+            print("Shutting down. Goodbye!")
+            break
+
+        if operation not in ['+', '-', '*', '/']:
+            print("Invalid operation. Please try again.")
+            continue
+
+        # 3. Get Numbers using our validator
+        num1 = get_number("Enter first number: ")
+        num2 = get_number("Enter second number: ")
+
+        # 4. Perform Calculation
+        try:
+            if operation == '+':
+                print(f"Result: {add(num1, num2)}")
+            elif operation == '-':
+                print(f"Result: {subtract(num1, num2)}")
+            # ... and so on
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
 if __name__ == "__main__":
     main()
