@@ -44,8 +44,17 @@ def get_number(prompt):
         except ValueError:
             print("Invalid input! Please enter a numeric value.")
 
-            
+#===============================================
+#Complex Math (The math Module)
+#===============================================
+def power(a, b):
+    return math.pow(a, b)
 
+def square_root(a, _): # We use '_' because our logic expects two numbers, but sqrt only needs one
+    if a < 0:
+        raise ValueError("Cannot take square root of a negative number!")
+    return math.sqrt(a)
+          
 #===============================================
 #Step 4: The Advanced Map Logic This is where the "Advanced" part comes in.
 #By mapping strings to functions, you can add new features (like square roots or exponents) later just by adding one line to this dictionary.
@@ -146,6 +155,11 @@ def get_number(prompt):
         except ValueError:
             print("Please enter a number or 'ans'.")
 
+def clear_memory(a=None, b=None):
+    """Resets the calculator state to zero."""
+    print("Memory Cleared!")
+    return 0
+
 #===============================================
 #Adding the Memory Feature
 #===============================================
@@ -166,16 +180,6 @@ def get_number(prompt):
         except ValueError:
             print("Invalid input! Enter a number or 'ans'.")
 
-#===============================================
-#Complex Math (The math Module)
-#===============================================
-def power(a, b):
-    return math.pow(a, b)
-
-def square_root(a, _): # We use '_' because our logic expects two numbers, but sqrt only needs one
-    if a < 0:
-        raise ValueError("Cannot take square root of a negative number!")
-    return math.sqrt(a)
 
 
 if __name__ == "__main__":
