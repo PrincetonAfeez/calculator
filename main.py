@@ -161,6 +161,28 @@ def get_number(prompt):
         except ValueError:
             print("Invalid input! Enter a number or 'ans'.")
 
+#===============================================
+#Complex Math (The math Module)
+#===============================================
+import math
+
+def power(a, b):
+    return math.pow(a, b)
+
+def square_root(a, _): # We use '_' because our logic expects two numbers, but sqrt only needs one
+    if a < 0:
+        raise ValueError("Cannot take square root of a negative number!")
+    return math.sqrt(a)
+
+# Update your dictionary
+operations = {
+    "+": add,
+    "-": subtract,
+    "*": multiply,
+    "/": divide,
+    "pow": power,
+    "sqrt": square_root
+}
 
 if __name__ == "__main__":
     main()
