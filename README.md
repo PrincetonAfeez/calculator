@@ -24,4 +24,4 @@ The project follows a **Layered Architecture** pattern to ensure the code is mai
 1. **Clone the repository:**
    ```bash
    git clone [https://github.com/PrincetonAfeez/calculator.git](https://github.com/PrincetonAfeez/calculator.git)
-   cd calculator
+   
