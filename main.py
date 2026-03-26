@@ -41,3 +41,19 @@ def get_number(prompt):
             return float(input(prompt))
         except ValueError:
             print("Invalid input! Please enter a numeric value.")
+
+            
+
+#===============================================
+#Step 4: The Advanced Map Logic This is where the "Advanced" part comes in.
+#By mapping strings to functions, you can add new features (like square roots or exponents) later just by adding one line to this dictionary.
+#===============================================
+
+operations = {
+    "+": add,
+    "-": subtract,
+    "*": multiply,
+    "/": divide
+}
+
+#===============================================
