@@ -2,6 +2,8 @@
 #This tutorial will guide you through building a simple calculator in Python, 
 #but with a twist: we'll use a more advanced mapping logic to make our code cleaner and more extensible.
 
+import math
+
 #===============================================
 #Step 1: Define the Architecture
 #Instead of a long list of if/else statements, we will use a Dictionary Mapping strategy. 
@@ -53,7 +55,9 @@ operations = {
     "+": add,
     "-": subtract,
     "*": multiply,
-    "/": divide
+    "/": divide,
+    "pow": power,
+    "sqrt": square_root
 }
 
 #===============================================
@@ -164,8 +168,6 @@ def get_number(prompt):
 #===============================================
 #Complex Math (The math Module)
 #===============================================
-import math
-
 def power(a, b):
     return math.pow(a, b)
 
@@ -174,15 +176,6 @@ def square_root(a, _): # We use '_' because our logic expects two numbers, but s
         raise ValueError("Cannot take square root of a negative number!")
     return math.sqrt(a)
 
-# Update your dictionary
-operations = {
-    "+": add,
-    "-": subtract,
-    "*": multiply,
-    "/": divide,
-    "pow": power,
-    "sqrt": square_root
-}
 
 if __name__ == "__main__":
     main()
