@@ -94,7 +94,8 @@ def main():
         try:
             result = operations[op](num1, num2)
             print(f"Result: {result}")
-        except ValueError as e:
+            last_result = result  # <--- SAVE THE STATE HERE
+        except Exception as e:
             print(f"Error: {e}")
 
 #===============================================
@@ -159,7 +160,7 @@ def get_number(prompt):
         if user_input == 'ans':
             print(f" (Using last result: {last_result})")
             return last_result
-            
+
         try:
             return float(user_input)
         except ValueError:
