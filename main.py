@@ -126,5 +126,20 @@ def calculator():
         except Exception as e:
             print(f"An error occurred: {e}")
 
+#===============================================
+#Adding "State" (Memory)
+#===============================================
+last_result = 0
+
+def get_number(prompt):
+    while True:
+        user_input = input(prompt).lower()
+        if user_input == 'ans':
+            return last_result
+        try:
+            return float(user_input)
+        except ValueError:
+            print("Please enter a number or 'ans'.")
+            
 if __name__ == "__main__":
     main()
