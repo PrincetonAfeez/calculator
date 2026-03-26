@@ -3,6 +3,7 @@
 #but with a twist: we'll use a more advanced mapping logic to make our code cleaner and more extensible.
 
 import math
+import datetime
 
 #===============================================
 #Step 1: Define the Architecture
@@ -30,7 +31,6 @@ def divide(a, b):
         raise ValueError("Cannot divide by zero!")
     return a / b
 
-
 #===============================================
 #Step 3: Build a Robust Input Validator
 #In professional software, you can't trust user input.
@@ -54,7 +54,13 @@ def square_root(a, _): # We use '_' because our logic expects two numbers, but s
     if a < 0:
         raise ValueError("Cannot take square root of a negative number!")
     return math.sqrt(a)
-          
+
+#add a "Clear Memory" command so you can reset the last_result to zero without restarting
+def clear_memory(a=None, b=None):
+    """Resets the calculator state to zero."""
+    print("Memory Cleared!")
+    return 0
+
 #===============================================
 #Step 4: The Advanced Map Logic This is where the "Advanced" part comes in.
 #By mapping strings to functions, you can add new features (like square roots or exponents) later just by adding one line to this dictionary.
@@ -66,46 +72,9 @@ operations = {
     "*": multiply,
     "/": divide,
     "pow": power,
-    "sqrt": square_root
+    "sqrt": square_root,
+    "c": clear_memory  # <--- New command added here
 }
-
-#===============================================
-#Step 5: Putting it all Together
-#Now we'll create the main loop that ties everything together.
-#===============================================
-
-def main():
-    print("Advanced Calculator")
-    print("Supported operations: +, -, *, /")
-    print("Type 'quit' to exit.")
-
-    while True:
-        # Get the first number
-        num1 = get_number("Enter the first number: ")
-
-        # Get the operation
-        op = input("Enter an operation (+, -, *, /): ")
-
-        # Check if the user wants to quit
-        if op == "quit":
-            print("Goodbye!")
-            break
-
-        # Check if the operation is valid
-        if op not in operations:
-            print("Invalid operation! Please try again.")
-            continue
-
-        # Get the second number
-        num2 = get_number("Enter the second number: ")
-
-        # Perform the calculation
-        try:
-            result = operations[op](num1, num2)
-            print(f"Result: {result}")
-            last_result = result  # <--- SAVE THE STATE HERE
-        except Exception as e:
-            print(f"Error: {e}")
 
 #===============================================
 #Implementing the Infinite Loop
@@ -155,11 +124,6 @@ def get_number(prompt):
         except ValueError:
             print("Please enter a number or 'ans'.")
 
-def clear_memory(a=None, b=None):
-    """Resets the calculator state to zero."""
-    print("Memory Cleared!")
-    return 0
-
 #===============================================
 #Adding the Memory Feature
 #===============================================
@@ -180,6 +144,34 @@ def get_number(prompt):
         except ValueError:
             print("Invalid input! Enter a number or 'ans'.")
 
+#===============================================
+#Step 5: Putting it all Together
+#Now we'll create the main loop that ties everything together.
+#===============================================
+
+def main():
+    global last_result
+    print("Commands: +, -, *, /, pow, sqrt | 'c' to Clear | 'q' to Quit")
+    
+    while True:
+        op = input("\nOperation: ").lower().strip()
+        
+        if op == 'q': break
+        
+        if op == 'c':
+            last_result = clear_memory()
+            continue
+
+        if op not in operations:
+            print("Invalid command.")
+            continue
+
+        num1 = get_number("Num 1: ")
+        # Only ask for second number if it's not a square root
+        num2 = get_number("Num 2: ") if op != 'sqrt' else 0
+
+        last_result = operations[op](num1, num2)
+        print(f"Result: {last_result}")
 
 
 if __name__ == "__main__":
